@@ -10,8 +10,6 @@ RELEASE_TAG = os.environ.get("RELEASE_TAG", "")
 MANIFEST_FILE = "blender_manifest.toml"
 REPO_JSON_FILE = "repo.json"
 
-print("Files in working directory:", os.listdir())
-
 def get_latest_release():
     url = f"https://api.github.com/repos/{GITHUB_REPOSITORY}/releases/tags/{RELEASE_TAG}"
     headers = {"Authorization": f"token {GITHUB_TOKEN}"}

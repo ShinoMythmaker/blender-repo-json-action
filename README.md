@@ -1,10 +1,12 @@
 # Blender Repo JSON Updater Action
 
+This action will generate a repo.json file and populate it with data from blender_manifest.json and latest release zip. 
+
 ## Usage
 
 ```yaml
-- name: Update repo.json
-  uses: youruser/blender-repo-json-action@v1
+- name: Run blender-repo-json-action
+  uses: ShinoMythmaker/blender-repo-json-action@v2
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     GITHUB_REPOSITORY: ${{ github.repository }}

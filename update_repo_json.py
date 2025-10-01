@@ -7,7 +7,7 @@ import requests
 GITHUB_REPOSITORY = os.environ.get("GITHUB_REPOSITORY")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 RELEASE_TAG = os.environ.get("RELEASE_TAG", "")
-MANIFEST_FILE = "blender-manifest.toml"
+MANIFEST_FILE = "blender_manifest.toml"
 REPO_JSON_FILE = "repo.json"
 
 print("Files in working directory:", os.listdir())

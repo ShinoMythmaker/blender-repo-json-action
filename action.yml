@@ -1,0 +1,6 @@
+name: "Blender repo.json generator"
+description: "Updates or creates repo.json from blender-manifest.json."
+author: "Shino Mythmaker"
+runs:
+  using: "docker"
+  image: "Dockerfile"

@@ -1,6 +1,9 @@
-FROM python:3.11-slim
-WORKDIR /github/workspace
-COPY update_repo_json.py .
-COPY requirements.txt .
+FROM python:3
+
+COPY requirements.txt /requirements.txt
+
 RUN pip install -r requirements.txt
-ENTRYPOINT ["python", "update_repo_json.py"]
+
+COPY update_repo_json.py /update_repo_json.py
+
+CMD ["python", "/update_repo_json.py"]

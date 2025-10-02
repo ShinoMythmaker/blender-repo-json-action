@@ -1,6 +1,7 @@
 # Blender Repo JSON Updater Action
 
-This action will generate a repo.json file and populate it with data from blender_manifest.json and latest release zip. 
+This action will generate a repo.json file and populate it with data from blender_manifest.toml and latest release zip. 
+blender_manifest.toml has to be in the root folder!
 
 ## Usage
 

@@ -7,8 +7,15 @@ import requests
 GITHUB_REPOSITORY = os.environ.get("GITHUB_REPOSITORY")
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
 RELEASE_TAG = os.environ.get("RELEASE_TAG", "")
-MANIFEST_FILE = "blender_manifest.toml"
+MANIFEST_FILENAME = "blender_manifest.toml"
 REPO_JSON_FILE = "repo.json"
+
+def find_manifest_file(start_dir="."):
+    """Search for blender_manifest.toml file in the current directory and subdirectories."""
+    for root, dirs, files in os.walk(start_dir):
+        if MANIFEST_FILENAME in files:
+            return os.path.join(root, MANIFEST_FILENAME)
+    return None
 
 def get_latest_release():
     url = f"https://api.github.com/repos/{GITHUB_REPOSITORY}/releases/tags/{RELEASE_TAG}"
@@ -38,8 +45,14 @@ def sha256sum(filename):
     return h.hexdigest()
 
 def main():
-    # Load manifest from TOML
-    manifest = toml.load(MANIFEST_FILE)
+    # Find and load manifest from TOML
+    manifest_path = find_manifest_file()
+    if not manifest_path:
+        print(f"Error: {MANIFEST_FILENAME} not found in current directory or subdirectories!")
+        exit(1)
+    
+    print(f"Found manifest file at: {manifest_path}")
+    manifest = toml.load(manifest_path)
 
     release = get_latest_release()
     zip_asset = next((a for a in release["assets"] if a["name"].endswith(".zip")), None)
